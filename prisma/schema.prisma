@@ -324,3 +324,37 @@ model AdminOperationLog {
 
   @@index([adminId, createdAt])
 }
+
+model S3Config {
+  id             Int      @id @default(autoincrement())
+  endpoint       String
+  accessKeyId    String
+  secretAccessKey String
+  bucketName     String
+  region         String   @default("auto")
+  publicDomain   String?
+  pathPrefix     String?
+  cacheControl   String   @default("public, max-age=31536000, immutable")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Media {
+  id           Int      @id @default(autoincrement())
+  originalName String
+  storedName   String   @unique
+  mimeType     String
+  fileSize     Int
+  fileKey      String   @unique
+  url          String
+  thumbnailUrl String?
+  path         String?
+  metadata     String?
+  uploadedBy   Int
+  uploadedAt   DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([mimeType])
+  @@index([uploadedAt])
+  @@index([path])
+}

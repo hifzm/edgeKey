@@ -1,4 +1,4 @@
-import type { PrismaClient } from "../../generated/prisma/client";
+import type { PrismaClient, Prisma, CardStatus } from "../../generated/prisma/client";
 
 export function listCardRecords(prisma: PrismaClient) {
   return prisma.card.findMany({
@@ -76,10 +76,10 @@ export function listCardRecordsPaged(
     pageSize: number;
   },
 ) {
-  const where: import("../../generated/prisma/client").Prisma.CardWhereInput = {};
+  const where: Prisma.CardWhereInput = {};
   if (params.productId) where.productId = params.productId;
   if (params.batchNo) where.batchNo = { contains: params.batchNo };
-  if (params.status) where.status = params.status as import("../../generated/prisma/client").CardStatus;
+  if (params.status) where.status = params.status as CardStatus;
   if (params.startDate || params.endDate) {
     where.createdAt = {};
     if (params.startDate) where.createdAt.gte = new Date(params.startDate);

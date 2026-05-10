@@ -102,7 +102,7 @@ async function findAdminByCredentials(prisma: PrismaClient, username: string, pa
   };
 }
 
-function createAuthjsConfig(prisma: PrismaClient) {
+export function createAuthjsConfig(prisma: PrismaClient) {
   return {
     basePath: "/api/auth",
     trustHost: true,

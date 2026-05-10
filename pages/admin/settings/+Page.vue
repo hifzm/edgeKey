@@ -27,14 +27,20 @@
         </label>
         <label class="flex flex-col gap-1.5">
           <span class="label-text font-medium">网站Favicon (ico & png)</span>
-          <input v-model="form.logoIcon" class="input input-bordered w-full" placeholder="https://example.com/favicon.ico" />
+          <div class="flex gap-2">
+            <input v-model="form.logoIcon" class="input input-bordered w-full" placeholder="https://example.com/favicon.ico" />
+            <AppButton variant="outline" @click="openFilePicker('favicon')">选择图片</AppButton>
+          </div>
         </label>
       </div>
 
       <div class="grid gap-4 md:grid-cols-2">
         <label class="flex flex-col gap-1.5 md:col-span-2">
           <span class="label-text font-medium">网站Logo URL</span>
-          <input v-model="form.logo" class="input input-bordered w-full" placeholder="https://example.com/logo.png" />
+          <div class="flex gap-2">
+            <input v-model="form.logo" class="input input-bordered w-full" placeholder="https://example.com/logo.png" />
+            <AppButton variant="outline" @click="openFilePicker('logo')">选择图片</AppButton>
+          </div>
         </label>
       </div>
 
@@ -66,10 +72,19 @@
       </div>
     </div>
   </section>
+  
+  <!-- 文件选择弹窗 -->
+  <FilePickerModal
+    :show="showFilePicker"
+    :type-filter="filePickerTypeFilter"
+    @close="showFilePicker = false"
+    @select="handleFileSelect"
+  />
 </template>
 
 <script setup lang="ts">
 import AppButton from "../../../components/AppButton.vue";
+import FilePickerModal from "../../../components/FilePickerModal.vue";
 import { normalizeTelefuncError } from "../../../lib/app-error";
 import { reactive, ref } from "vue";
 import { useData } from "vike-vue/useData";
@@ -93,6 +108,9 @@ const form = reactive({
 const saving = ref(false);
 const saved = ref(false);
 const errorMessage = ref("");
+const showFilePicker = ref(false);
+const filePickerTypeFilter = ref("");
+const currentPickerTarget = ref<"" | "logo" | "favicon">("");
 
 async function handleSave() {
   saving.value = true;
@@ -116,5 +134,20 @@ async function handleSave() {
   } finally {
     saving.value = false;
   }
+}
+
+function openFilePicker(target: "logo" | "favicon") {
+  currentPickerTarget.value = target;
+  filePickerTypeFilter.value = "image/";
+  showFilePicker.value = true;
+}
+
+function handleFileSelect(url: string) {
+  if (currentPickerTarget.value === "logo") {
+    form.logo = url;
+  } else if (currentPickerTarget.value === "favicon") {
+    form.logoIcon = url;
+  }
+  showFilePicker.value = false;
 }
 </script>

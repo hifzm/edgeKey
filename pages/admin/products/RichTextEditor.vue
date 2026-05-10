@@ -52,13 +52,14 @@
         <div class="relative">
           <button
             type="button"
+            title="文字颜色"
             class="toolbar-button toolbar-button-wide"
             :class="isTextColorActive || openPanel === 'text' ? 'toolbar-button-active' : ''"
             @mousedown.prevent
             @click.stop="togglePanel('text')"
           >
             <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M9.169 4.63a.75.75 0 0 1 1.662 0l3.75 9.5a.75.75 0 0 1-1.395.55l-.815-2.065H7.629l-.815 2.065a.75.75 0 1 1-1.395-.55l3.75-9.5ZM8.22 11.115h3.56L10 6.598 8.22 11.115Zm7.03 4.135a.75.75 0 0 1-.75.75H5.5a.75.75 0 0 1 0-1.5h9a.75.75 0 0 1 .75.75Z" fill="currentColor"/></svg>
-            <span>字色</span>
+            <!-- <span>字色</span> -->
           </button>
           <div
             v-if="openPanel === 'text'"
@@ -95,13 +96,14 @@
         <div class="relative">
           <button
             type="button"
+            title="文字高亮"
             class="toolbar-button toolbar-button-wide"
             :class="editor?.isActive('highlight') || openPanel === 'highlight' ? 'toolbar-button-active' : ''"
             @mousedown.prevent
             @click.stop="togglePanel('highlight')"
           >
             <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M13.82 3.72a1.75 1.75 0 0 1 2.475 0l.0 0 .985.985a1.75 1.75 0 0 1 0 2.475l-7.99 7.99a2.25 2.25 0 0 1-1.02.574l-2.565.641a.75.75 0 0 1-.91-.91l.641-2.565a2.25 2.25 0 0 1 .574-1.02l7.99-7.99Zm1.414 1.06a.25.25 0 0 0-.354 0l-.817.818 1.339 1.338.817-.817a.25.25 0 0 0 0-.353l-.985-.986ZM13.34 6.66l-6.27 6.27a.75.75 0 0 0-.191.34l-.33 1.32 1.32-.33a.75.75 0 0 0 .34-.191l6.27-6.27-1.339-1.338ZM4 16.25a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75a.75.75 0 0 1-.75-.75Z" fill="currentColor"/></svg>
-            <span>高亮</span>
+            <!-- <span>高亮</span> -->
           </button>
           <div
             v-if="openPanel === 'highlight'"
@@ -149,13 +151,14 @@
         <div class="relative">
           <button
             type="button"
+            title="超链接"
             class="toolbar-button toolbar-button-wide"
             :class="editor?.isActive('link') || openPanel === 'link' ? 'toolbar-button-active' : ''"
             @mousedown.prevent
             @click.stop="toggleLinkPanel"
           >
             <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M11.53 5.47a3.75 3.75 0 0 1 5.303 5.303l-2.121 2.121a3.75 3.75 0 0 1-5.304 0 .75.75 0 1 1 1.06-1.06 2.25 2.25 0 0 0 3.183 0l2.122-2.122a2.25 2.25 0 0 0-3.182-3.182L10.47 8.66a.75.75 0 1 1-1.06-1.06l2.121-2.122Zm-6.243 1.636a3.75 3.75 0 0 1 5.304 0 .75.75 0 1 1-1.061 1.06 2.25 2.25 0 0 0-3.182 0L4.227 10.35a2.25 2.25 0 0 0 3.182 3.182l2.122-2.122a.75.75 0 0 1 1.06 1.061L8.47 14.591a3.75 3.75 0 1 1-5.303-5.303l2.121-2.182Z" fill="currentColor"/></svg>
-            <span>链接</span>
+            <!-- <span>链接</span> -->
           </button>
           <div
             v-if="openPanel === 'link'"
@@ -176,17 +179,17 @@
             </div>
           </div>
         </div>
-        <button type="button" class="toolbar-button toolbar-button-icon" title="移除链接" aria-label="移除链接" @mousedown.prevent @click="unsetLink">
+        <button type="button" class="toolbar-button toolbar-button-icon" title="移除超链接" aria-label="移除超链接" @mousedown.prevent @click="unsetLink">
           <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M4.47 4.47a.75.75 0 0 1 1.06 0l10 10a.75.75 0 1 1-1.06 1.06l-1.778-1.777a3.75 3.75 0 0 1-4.121-.865.75.75 0 0 1 1.06-1.06 2.25 2.25 0 0 0 2.135.594L8.62 9.19a2.25 2.25 0 0 0-1.65 3.842.75.75 0 1 1-1.06 1.06A3.75 3.75 0 0 1 7.56 7.73L4.47 4.53a.75.75 0 0 1 0-1.06Zm7.97.34a3.75 3.75 0 0 1 3.649 6.083.75.75 0 0 1-1.061-1.06 2.25 2.25 0 0 0-2.412-3.676l-.177.051a.75.75 0 0 1-.412-1.442l.413-.118Zm-7.264 2.46a.75.75 0 0 1 1.06 0l.764.764a.75.75 0 1 1-1.06 1.06l-.764-.763a.75.75 0 0 1 0-1.061Z" fill="currentColor"/></svg>
         </button>
         <div class="relative">
-          <button type="button" class="toolbar-button toolbar-button-icon" :class="openPanel === 'image' ? 'toolbar-button-active' : ''" title="插入图片" aria-label="插入图片" @mousedown.prevent @click.stop="toggleImagePanel">
+          <button type="button" class="toolbar-button toolbar-button-icon" :class="openPanel === 'image' ? 'toolbar-button-active' : ''" title="图片链接" aria-label="图片链接" @mousedown.prevent @click.stop="toggleImagePanel">
             <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M4.75 4A1.75 1.75 0 0 0 3 5.75v8.5C3 15.216 3.784 16 4.75 16h10.5A1.75 1.75 0 0 0 17 14.25v-8.5A1.75 1.75 0 0 0 15.25 4H4.75Zm0 1.5h10.5a.25.25 0 0 1 .25.25v5.072l-2.117-2.118a1.75 1.75 0 0 0-2.475 0l-2.25 2.25-.617-.617a1.75 1.75 0 0 0-2.475 0L4.5 11.403V5.75a.25.25 0 0 1 .25-.25Zm-.25 7.974 2.126-2.126a.25.25 0 0 1 .354 0l1.147 1.147a.75.75 0 0 0 1.06 0l2.78-2.78a.25.25 0 0 1 .354 0l3.179 3.179v1.356a.25.25 0 0 1-.25.25H4.75a.25.25 0 0 1-.25-.25v-.776ZM13.25 7a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z" fill="currentColor"/></svg>
           </button>
           <div v-if="openPanel === 'image'" class="panel-popover right-0 z-[20] mt-2 w-72 rounded-2xl border border-base-300 bg-base-100 p-3 shadow-xl" @mousedown.prevent @click.stop>
             <div class="space-y-2.5">
               <div class="panel-header">
-                <div class="panel-title">插入图片</div>
+                <div class="panel-title">图片链接</div>
               </div>
               <input v-model="imageDraft" class="input input-bordered input-sm w-full" placeholder="https://example.com/image.jpg" @mousedown.stop @click.stop />
               <div class="panel-tip">输入公开可访问的图片 URL。</div>
@@ -196,6 +199,9 @@
             </div>
           </div>
         </div>
+        <button type="button" class="toolbar-button toolbar-button-icon" title="插入文件" aria-label="插入文件" @mousedown.prevent @click.stop="showFilePicker = true">
+          <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M3 3.5A1.5 1.5 0 0 1 4.5 2h6.879a1.5 1.5 0 0 1 1.06.44l4.122 4.12A1.5 1.5 0 0 1 17 7.622V16.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 16.5v-13ZM4.5 3a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7.622a.5.5 0 0 0-.146-.354l-4.122-4.121A.5.5 0 0 0 11.379 3H4.5Z" fill="currentColor"/></svg>
+        </button>
         <button type="button" class="toolbar-button toolbar-button-icon" title="分割线" aria-label="分割线" @mousedown.prevent @click="editor?.chain().focus().setHorizontalRule().run()">
           <svg viewBox="0 0 20 20" class="toolbar-icon" aria-hidden="true"><path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Zm5.47-5.28a.75.75 0 0 1 1.06 0l1.75 1.75a.75.75 0 1 1-1.06 1.06L10.75 7.06v5.88l.47-.47a.75.75 0 0 1 1.06 1.06l-1.75 1.75a.75.75 0 0 1-1.06 0l-1.75-1.75a.75.75 0 1 1 1.06-1.06l.47.47V7.06l-.47.47a.75.75 0 1 1-1.06-1.06l1.75-1.75Z" fill="currentColor"/></svg>
         </button>
@@ -223,6 +229,13 @@
       <EditorContent v-else :editor="editor" class="tiptap-editor" />
     </div>
   </div>
+
+  <!-- 文件选择弹窗 -->
+  <FilePickerModal
+    :show="showFilePicker"
+    @close="showFilePicker = false"
+    @select="handleFileSelect"
+  />
 </template>
 
 <script setup lang="ts">
@@ -234,6 +247,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Image from "@tiptap/extension-image";
 import { TextStyle, Color } from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
+import FilePickerModal from "../../../components/FilePickerModal.vue";
 
 const props = defineProps<{
   modelValue: string;
@@ -265,6 +279,7 @@ const htmlMode = ref(false);
 const htmlDraft = ref("");
 const linkDraft = ref("");
 const imageDraft = ref("");
+const showFilePicker = ref(false);
 
 const editor = useEditor({
   immediatelyRender: false,
@@ -421,6 +436,14 @@ function applyImage() {
   editor.value.chain().focus().setImage({ src }).run();
   imageDraft.value = "";
   openPanel.value = null;
+}
+
+function handleFileSelect(url: string) {
+  if (!editor.value) {
+    return;
+  }
+  editor.value.chain().focus().setImage({ src: url }).run();
+  showFilePicker.value = false;
 }
 
 function togglePanel(panel: "text" | "highlight") {

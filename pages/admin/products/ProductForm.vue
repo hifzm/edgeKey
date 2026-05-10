@@ -67,7 +67,10 @@
         </label>
         <label class="flex flex-col gap-1.5">
           <span class="label-text font-medium">商品封面（图片链接）</span>
-          <input v-model="form.coverImage" class="input input-bordered w-full" placeholder="https://..." />
+          <div class="flex gap-2">
+            <input v-model="form.coverImage" class="input input-bordered w-full" placeholder="https://..." />
+            <AppButton variant="outline" @click="showFilePicker = true">选择图片</AppButton>
+          </div>
         </label>
       </div>
 
@@ -89,12 +92,20 @@
       </div>
     </div>
   </section>
+
+  <FilePickerModal
+    :show="showFilePicker"
+    type-filter="image/"
+    @close="showFilePicker = false"
+    @select="handleFileSelect"
+  />
 </template>
 
 <script setup lang="ts">
 import { normalizeTelefuncError } from "../../../lib/app-error";
 import { reactive, ref } from "vue";
 import AppButton from "../../../components/AppButton.vue";
+import FilePickerModal from "../../../components/FilePickerModal.vue";
 import { formatCents } from "../../../lib/utils/money";
 import RichTextEditor from "./RichTextEditor.vue";
 import { onSaveProduct } from "./saveProduct.telefunc";
@@ -110,6 +121,7 @@ const form = reactive(createProductFormState(props.initialValue));
 const saving = ref(false);
 const saved = ref(false);
 const errorMessage = ref("");
+const showFilePicker = ref(false);
 
 async function handleSave() {
   saving.value = true;
@@ -152,5 +164,10 @@ async function handleSave() {
   } finally {
     saving.value = false;
   }
+}
+
+function handleFileSelect(url: string) {
+  form.coverImage = url;
+  showFilePicker.value = false;
 }
 </script>
