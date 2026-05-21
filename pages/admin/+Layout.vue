@@ -100,6 +100,7 @@
             <li><a href="/admin/products" :class="{'active': currentPath?.startsWith('/admin/products')}">商品管理</a></li>
             <li><a href="/admin/cards" :class="{'active': currentPath?.startsWith('/admin/cards')}">卡密管理</a></li>
             <li><a href="/admin/orders" :class="{'active': currentPath?.startsWith('/admin/orders')}">订单管理</a></li>
+            <li><a href="/admin/discount-codes" :class="{'active': currentPath?.startsWith('/admin/discount-codes')}">折扣码管理</a></li>
             <li><a href="/admin/payments" :class="{'active': currentPath?.startsWith('/admin/payments')}">支付配置</a></li>
             <li><a href="/admin/email" :class="{'active': currentPath?.startsWith('/admin/email')}">邮件管理</a></li>
             <li><a href="/admin/media" :class="{'active': currentPath?.startsWith('/admin/media')}">文件管理</a></li>
@@ -217,6 +218,7 @@ const BREADCRUMB_ROUTES: { pattern: string; crumbs: Crumb[] }[] = [
   { pattern: "/admin/orders",            crumbs: [{ name: "订单管理" }] },
   { pattern: "/admin/categories",        crumbs: [{ name: "分类管理" }] },
   { pattern: "/admin/cards",             crumbs: [{ name: "卡密管理" }] },
+  { pattern: "/admin/discount-codes",    crumbs: [{ name: "折扣码管理" }] },
   { pattern: "/admin/payments",          crumbs: [{ name: "支付配置" }] },
   { pattern: "/admin/email",             crumbs: [{ name: "邮件管理" }] },
   { pattern: "/admin/media",             crumbs: [{ name: "文件管理" }] },
